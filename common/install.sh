@@ -36,7 +36,7 @@
   sleep 1
   
   ui_print ""
-  ui_print "- Enable themed navbar?"
+  ui_print "- Enable themed nav bar style?"
   ui_print "- Vol+ — Yes | Vol- — No"
   if chooseport 100; then
     sed -i 's/"themed_nav_bar_style" value="0"/"themed_nav_bar_style" value="2"/g' $flags
@@ -69,7 +69,7 @@
   sleep 1
   
   ui_print ""
-  ui_print "- Enable high contrast for themes?"
+  ui_print "- Enable higher contrast for white theme?"
   ui_print "- Vol+ — Yes | Vol- — No"
   if chooseport 100; then
     sed -i 's/"keyboard_redesign_higher_contrast" value="false"/"keyboard_redesign_higher_contrast" value="true"/g' $flags
@@ -83,7 +83,7 @@
   sleep 1
 
   ui_print ""
-  ui_print "- Keep padding between keys?"
+  ui_print "- Keep key padding?"
   ui_print "- Vol+ — Yes | Vol- — No"
   if chooseport 100; then
     sed -i 's/"keyboard_redesign_keep_key_padding" value="false"/"keyboard_redesign_keep_key_padding" value="true"/g' $flags
@@ -139,7 +139,7 @@
   sleep 1
   
   ui_print ""
-  ui_print "- Enable new key pop-up?"
+  ui_print "- Enable key pop-up v2?"
   ui_print "- Vol+ — Yes | Vol- — No"
   if chooseport 100; then
     sed -i 's/"enable_popup_view_v2" value="false"/"enable_popup_view_v2" value="true"/g' $flags
