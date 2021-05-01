@@ -97,15 +97,27 @@
   sleep 1
   
   ui_print ""
-  ui_print "- Enable key shadows?"
+  ui_print "- Enable key shadows for all themes?"
   ui_print "- Vol+ — Yes | Vol- — No"
   if chooseport 100; then
     sed -i 's/"keyboard_redesign_force_key_shadows" value="false"/"keyboard_redesign_force_key_shadows" value="true"/g' $flags
     ui_print "SHADOWS" >> $MODPATH/config.ngt
     ui_print '- Enabled'
   else
+    sleep 1
+    ui_print "- Disabled"
+    ui_print ""
+    ui_print "- Disable key shadows for all themes?"
+    ui_print "- Vol+ — Yes | Vol- — No"
+    if chooseport 100; then
+      sed -i 's/"keyboard_redesign_forbid_key_shadows" value="false"/"keyboard_redesign_forbid_key_shadows" value="true"' $flags
+      ui_print "FORBIDSHADOWS" >> $MODPATH/config.ngt
+      ui_print "- Enabled"
+    else
+      sed -i 's/"keyboard_redesign_forbid_key_shadows" value="true"/"keyboard_redesign_forbid_key_shadows" value="false"' $flags
+      ui_print '- Disabled'
+    fi
     sed -i 's/"keyboard_redesign_force_key_shadows" value="true"/"keyboard_redesign_force_key_shadows" value="false"/g' $flags
-    ui_print '- Disabled'
   fi
 
   sleep 1

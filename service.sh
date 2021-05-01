@@ -51,5 +51,9 @@
   if grep EMAILPROVIDER $MODPATH/config.ngt; then
     sed -i 's/"enable_email_provider_completion" value="false"/"enable_email_provider_completion" value="true"/g' $flags
   fi
-
+  
+  if grep FORBIDSHADOWS $MODPATH/config.ngt; then
+    sed -i 's/"keyboard_redesign_forbid_key_shadows" value="false"/"keyboard_redesign_forbid_key_shadows" value="true"/g' $flags
+  fi
+  
   am force-stop $gboard

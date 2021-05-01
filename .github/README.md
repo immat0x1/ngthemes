@@ -14,7 +14,7 @@ Enable new themes and customize your GBoard
 - Google logo on space
 - High contrast for white theme
 - Padding between keys
-- Key shadows
+- Key shadows for all themes (disable/enable)
 - Dark commas
 - Screenshot paste in clipboard
 - New key pop-up v2
