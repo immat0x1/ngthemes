@@ -186,7 +186,7 @@
   ui_print "- Round corners?"
   ui_print "- Vol+ — Yes | Vol- — No"
   if chooseport 100; then
-    sleep 1
+    sleep 0.5
     ui_print ""
     ui_print "- How much?"
     ui_print "- Vol+ — 10 | Vol- — More"
@@ -194,14 +194,14 @@
       ui_print "ro.com.google.ime.corner_key_r=10" >> $MODPATH/system.prop
       ui_print '- Enabled corners (10)'
     else
-      sleep 1
+      sleep 0.5
       ui_print ""
       ui_print "- Vol+ — 20 | Vol- — More"
       if chooseport 100; then
         ui_print "ro.com.google.ime.corner_key_r=20" >> $MODPATH/system.prop
         ui_print '- Enabled corners (20)'
       else
-        sleep 1
+        sleep 0.5
         ui_print ""
         ui_print "- Vol+ — 30 | Vol- — 40"
         if chooseport 100; then
@@ -228,6 +228,8 @@
     rm -rf $MODPATH/service.sh
     ui_print '- Disabled'
   fi
-
+  
+  sleep 1
+  
   ui_print ""
   am force-stop $gboard
