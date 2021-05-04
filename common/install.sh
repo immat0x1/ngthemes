@@ -39,8 +39,13 @@
   ui_print "- Enable themed nav bar style?"
   ui_print "- Vol+ — Yes | Vol- — No"
   if chooseport 100; then
-    sed -i 's/"themed_nav_bar_style" value="0"/"themed_nav_bar_style" value="2"/g' $flags
-    sed -i 's/"themed_nav_bar_style" value="1"/"themed_nav_bar_style" value="2"/g' $flags
+    if ! grep themed_nav_bar_style $flags; then
+      # гений мысли
+      sed -i "/<map>/a `echo '<long name="themed_nav_bar_style" value="2" />'`" $flags
+    else
+      sed -i 's/"themed_nav_bar_style" value="0"/"themed_nav_bar_style" value="2"/g' $flags
+      sed -i 's/"themed_nav_bar_style" value="1"/"themed_nav_bar_style" value="2"/g' $flags
+    fi
     ui_print "TNAVBARS" >> $MODPATH/config.ngt
     ui_print "- Enabled"
   else

@@ -10,8 +10,13 @@
     
   
   if grep TNAVBARS $MODPATH/config.ngt; then
-    sed -i 's/"themed_nav_bar_style" value="0"/"themed_nav_bar_style" value="2"/g' $flags
-    sed -i 's/"themed_nav_bar_style" value="1"/"themed_nav_bar_style" value="2"/g' $flags
+    if ! grep themed_nav_bar_style $flags; then
+      # гений мысли отец русского модулестроения
+      sed -i "/<map>/a `echo '<long name="themed_nav_bar_style" value="2" />'`" $flags
+    else
+      sed -i 's/"themed_nav_bar_style" value="0"/"themed_nav_bar_style" value="2"/g' $flags
+      sed -i 's/"themed_nav_bar_style" value="1"/"themed_nav_bar_style" value="2"/g' $flags
+    fi
   fi
 
   if grep GLOGO $MODPATH/config.ngt; then
