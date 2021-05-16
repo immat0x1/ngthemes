@@ -238,6 +238,7 @@
     ui_print "- Vol+ — Yes | Vol- — No"
     if chooseport 100; then
       sed -i 's/"pill_shaped_key" value="false"/"pill_shaped_key" value="true"/g' $flags
+      ui_print "ro.com.google.ime.corner_key_r=0" >> $MODPATH/system.prop
       ui_print "PILLSHAPEDKEY" >> $MODPATH/config.ngt
       ui_print "- Enabled"
     else
