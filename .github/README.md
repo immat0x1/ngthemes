@@ -21,6 +21,7 @@ Enable new themes and customize your GBoard
 - Delete joystick
 - Email provider completion
 - Rounded corners (10,20,30,40)
+- Pill shaped keys
 - Auto applying every reboot
 
 Based on MMT-EX by @Zackptg5, for changelog check changelog.md <br><br>
