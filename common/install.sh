@@ -232,6 +232,19 @@
     fi
   else
     ui_print "- Disabled"
+    sleep 1
+    ui_print ""
+    ui_print "- Enable pill shaped keys?"
+    ui_print "- Vol+ — Yes | Vol- — No"
+    if chooseport 100; then
+      sed -i 's/"pill_shaped_key" value="false"/"pill_shaped_key" value="true"/g' $flags
+      ui_print "PILLSHAPEDKEY" >> $MODPATH/config.ngt
+      ui_print "- Enabled"
+    else
+      sed -i 's/"pill_shaped_key" value="true"/"pill_shaped_key" value="false"/g' $flags
+      ui_print "- Disabled"
+    fi
+    sed -i 's/"pill_shaped_key" value="true"/"pill_shaped_key" value="false"/g' $flags
   fi
 
   sleep 1

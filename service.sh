@@ -61,4 +61,8 @@
     sed -i 's/"keyboard_redesign_forbid_key_shadows" value="false"/"keyboard_redesign_forbid_key_shadows" value="true"/g' $flags
   fi
   
+  if grep PILLSHAPEDKEY $MODPATH/config.ngt; then
+    sed -i 's/"pill_shaped_key" value="false"/"pill_shaped_key" value="true"/g' $flags
+  fi
+  
   am force-stop $gboard
