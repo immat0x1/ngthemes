@@ -9,6 +9,10 @@
 
 ### v5.1 ###
 - Fix for themed nav bar
- 
+
 ### v5.2 ###
-- New flag (pill shaped keys)
+- New "pill_shaped_key" flag
+
+### v5.3 ###
+- New "silk_theme" flag (only for a12)
+- Probably fixed all bugs

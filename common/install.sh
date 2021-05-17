@@ -39,7 +39,7 @@
   ui_print "- Enable themed nav bar style?"
   ui_print "- Vol+ — Yes | Vol- — No"
   if chooseport 100; then
-    if ! grep themed_nav_bar_style $flags; then
+    if ! grep -q themed_nav_bar_style $flags; then
       # гений мысли
       sed -i "/<map>/a `echo '<long name="themed_nav_bar_style" value="2" />'`" $flags
     else
@@ -238,18 +238,32 @@
     ui_print "- Vol+ — Yes | Vol- — No"
     if chooseport 100; then
       sed -i 's/"pill_shaped_key" value="false"/"pill_shaped_key" value="true"/g' $flags
-      ui_print "ro.com.google.ime.corner_key_r=0" >> $MODPATH/system.prop
+      ui_print "ro.com.google.ime.corner_key_r=false" >> $MODPATH/system.prop
       ui_print "PILLSHAPEDKEY" >> $MODPATH/config.ngt
       ui_print "- Enabled"
     else
       sed -i 's/"pill_shaped_key" value="true"/"pill_shaped_key" value="false"/g' $flags
       ui_print "- Disabled"
     fi
-    sed -i 's/"pill_shaped_key" value="true"/"pill_shaped_key" value="false"/g' $flags
+  fi
+
+  if [ "`getprop ro.build.version.codename`" = "S" ]; then
+    sleep 1
+    ui_print ""
+    ui_print "- Enable silk theme?"
+    ui_print "- Vol+ — Yes | Vol- — No"
+    if chooseport 100; then
+      sed -i 's/"silk_theme" value="false"/"silk_theme" value="true"/g' $flags
+      ui_print "SILKTHEME" >> $MODPATH/config.ngt
+      ui_print "- Enabled"
+    else
+      sed -i 's/"silk_theme" value="true"/"silk_theme" value="false"/g' $flags
+      ui_print "- Disabled"
+    fi
   fi
 
   sleep 1
-
+  
   ui_print ""
   ui_print "- Apply flags every reboot?"
   ui_print "- Vol+ — Yes | Vol- — No"

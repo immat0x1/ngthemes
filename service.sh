@@ -65,4 +65,8 @@
     sed -i 's/"pill_shaped_key" value="false"/"pill_shaped_key" value="true"/g' $flags
   fi
   
+  if grep SILKTHEME $MODPATH/config.ngt; then
+    sed -i 's/"silk_theme" value="false"/"silk_theme" value="true"/g' $flags
+  fi
+
   am force-stop $gboard
