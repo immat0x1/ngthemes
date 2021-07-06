@@ -16,3 +16,8 @@
 ### v5.3 ###
 - New "silk_theme" flag (only for a12)
 - Probably fixed all bugs
+
+### v5.4 ###
+- New "silk_popup" flag (only for a12)
+- Ability to use config instead of volume select installer
+- Fixes, fixes, fixes
