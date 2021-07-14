@@ -17,7 +17,7 @@
   
   # a12 only
   SILK_THEME=0
-  SILK_POPUP=0
+  SILK_POPUP_AND_MODAL_BACKDROP=0
 
   SKIPUNZIP=1
   unzip -qjo "$ZIPFILE" 'common/functions.sh' -d $TMPDIR >&2

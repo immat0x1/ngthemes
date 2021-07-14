@@ -61,8 +61,9 @@
     sed -i 's/"use_silk_theme_by_default" value="false"/"use_silk_theme_by_default" value="true"/g' $flags
   fi
   
-  if grep -q SILK_POPUP $MODPATH/config.ngt; then
+  if grep -q SILK_POPUP_AND_BACKDROP $MODPATH/config.ngt; then
     sed -i 's/"silk_popup" value="false"/"silk_popup" value="true"/g' $flags
+    sed -i 's/"silk_popup_modal_backdrop" value="false"/"silk_popup_modal_backdrop" value="true"/g' $flags
   fi
 
   am force-stop $gboard

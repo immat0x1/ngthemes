@@ -34,66 +34,100 @@
 
 
 if [ $USE_CONFIG = "1" ]; then
-
+  
+  ui_print "- Enabling flags using config"
+  sleep 1
+  ui_print ""
+  
   if [ $THEMED_NAVBAR_STYLE = "1" ]; then
-    if ! [ themed_nav_bar_style $flags; then
+    if ! grep -q themed_nav_bar_style $flags; then
       sed -i "/<map>/a `echo '<long name="themed_nav_bar_style" value="2" />'`" $flags
     else
       sed -i 's/"themed_nav_bar_style" value="0"/"themed_nav_bar_style" value="2"/g' $flags
       sed -i 's/"themed_nav_bar_style" value="1"/"themed_nav_bar_style" value="2"/g' $flags
     fi
+  else
+    sed -i 's/"themed_nav_bar_style" value="2"/"themed_nav_bar_style" value="0"/g' $flags
   fi
 
   if [ $GOOGLE_LOGO_ON_SPACE = "1" ]; then
     sed -i 's/"show_branding_on_space" value="false"/"show_branding_on_space" value="true"/g' $flags
     sed -i 's/"show_branding_interval_seconds" value="86400000"/"show_branding_interval_seconds" value="0"/g' $flags
     sed -i 's/"branding_fadeout_delay_ms" value="900"/"branding_fadeout_delay_ms" value="9999999999"/g' $flags
+  else
+    sed -i 's/"show_branding_on_space" value="true"/"show_branding_on_space" value="false"/g' $flags
+    sed -i 's/"show_branding_interval_seconds" value="0"/"show_branding_interval_seconds" value="86400000"/g' $flags
+    sed -i 's/"branding_fadeout_delay_ms" value="9999999999"/"branding_fadeout_delay_ms" value="900"/g' $flags
   fi
 
   if [ $HIGH_CONTRAST_FOR_WHITE_THEME = "1" ]; then
     sed -i 's/"keyboard_redesign_higher_contrast" value="false"/"keyboard_redesign_higher_contrast" value="true"/g' $flags
+  else
+    sed -i 's/"keyboard_redesign_higher_contrast" value="true"/"keyboard_redesign_higher_contrast" value="false"/g' $flags
   fi
 
   if [ $KEEP_KEY_PADDING = "1" ]; then
     sed -i 's/"keyboard_redesign_keep_key_padding" value="false"/"keyboard_redesign_keep_key_padding" value="true"/g' $flags
+  else
+    sed -i 's/"keyboard_redesign_keep_key_padding" value="true"/"keyboard_redesign_keep_key_padding" value="false"/g' $flags
   fi
 
   if [ $FORCE_KEY_SHADOWS = "1" ]; then
     sed -i 's/"keyboard_redesign_force_key_shadows" value="false"/"keyboard_redesign_force_key_shadows" value="true"/g' $flags
+  else
+    sed -i 's/"keyboard_redesign_force_key_shadows" value="true"/"keyboard_redesign_force_key_shadows" value="false"/g' $flags
   fi
 
   if [ $DARKCOMMA = "1" ]; then
     sed -i 's/"keyboard_redesign_dark_comma" value="false"/"keyboard_redesign_dark_comma" value="true"/g' $flags
+  else
+    sed -i 's/"keyboard_redesign_dark_comma" value="true"/"keyboard_redesign_dark_comma" value="false"/g' $flags
   fi
 
   if [ $POPUP_V2 = "1" ]; then
     sed -i 's/"enable_popup_view_v2" value="false"/"enable_popup_view_v2" value="true"/g' $flags
+  else
+    sed -i 's/"enable_popup_view_v2" value="true"/"enable_popup_view_v2" value="false"/g' $flags
   fi
 
   if [ $DELJOYSTICK = "1" ]; then
     sed -i 's/"enable_joystick_delete" value="false"/"enable_joystick_delete" value="true"/g' $flags
+  else
+    sed -i 's/"enable_joystick_delete" value="true"/"enable_joystick_delete" value="false"/g' $flags
   fi
 
   if [ $EMAILPROVIDER = "1" ]; then
     sed -i 's/"enable_email_provider_completion" value="false"/"enable_email_provider_completion" value="true"/g' $flags
+  else
+    sed -i 's/"enable_email_provider_completion" value="true"/"enable_email_provider_completion" value="false"/g' $flags
   fi
   
   if [ $FORBID_SHADOWS = "1" ]; then
     sed -i 's/"keyboard_redesign_forbid_key_shadows" value="false"/"keyboard_redesign_forbid_key_shadows" value="true"/g' $flags
+  else
+    sed -i 's/"keyboard_redesign_forbid_key_shadows" value="true"/"keyboard_redesign_forbid_key_shadows" value="false"/g' $flags
   fi
   
   if [ $SILK_THEME = "1" ]; then
     sed -i 's/"silk_theme" value="false"/"silk_theme" value="true"/g' $flags
     sed -i 's/"silk_on_all_pixel" value="false"/"silk_on_all_pixel" value="true"/g' $flags
     sed -i 's/"use_silk_theme_by_default" value="false"/"use_silk_theme_by_default" value="true"/g' $flags
+  else
+    sed -i 's/"silk_theme" value="true"/"silk_theme" value="false"/g' $flags
+    sed -i 's/"silk_on_all_pixel" value="true"/"silk_on_all_pixel" value="false"/g' $flags
+    sed -i 's/"use_silk_theme_by_default" value="true"/"use_silk_theme_by_default" value="false"/g' $flags
   fi
   
-  if [ $SILK_POPUP = "1" ]; then
+  if [ $SILK_POPUP_AND_MODAL_BACKDROP = "1" ]; then
     sed -i 's/"silk_popup" value="false"/"silk_popup" value="true"/g' $flags
+    sed -i 's/"silk_popup_modal_backdrop" value="false"/"silk_popup_modal_backdrop" value="true"/g' $flags
+  else
+    sed -i 's/"silk_popup" value="true"/"silk_popup" value="false"/g' $flags
+    sed -i 's/"silk_popup_modal_backdrop" value="true"/"silk_popup_modal_backdrop" value="false"/g' $flags
   fi
 
 else
-  
+
   ui_print ""
   ui_print "- Enable themed nav bar style?"
   ui_print "- Vol+ — Yes | Vol- — No"
@@ -301,10 +335,12 @@ else
     ui_print "- Vol+ — Yes | Vol- — No"
     if chooseport 100; then
       sed -i 's/"silk_popup" value="false"/"silk_popup" value="true"/g' $flags
-      ui_print "SILK_POPUP" >> $MODPATH/config.ngt
+      sed -i 's/"silk_popup_modal_backdrop" value="false"/"silk_popup_modal_backdrop" value="true"/g' $flags
+      ui_print "SILK_POPUP_AND_BACKDROP" >> $MODPATH/config.ngt
       ui_print "- Enabled"
     else
       sed -i 's/"silk_popup" value="true"/"silk_popup" value="false"/g' $flags
+      sed -i 's/"silk_popup_modal_backdrop" value="true"/"silk_popup_modal_backdrop" value="false"/g' $flags
       ui_print "- Disabled"
     fi
   fi
@@ -324,6 +360,7 @@ else
   sleep 1
   
   ui_print ""
+  
 fi
 
   am force-stop $gboard

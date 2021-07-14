@@ -21,3 +21,8 @@
 - New "silk_popup" flag (only for a12)
 - Ability to use config instead of volume select installer
 - Fixes, fixes, fixes
+
+### v5.5 ###
+- New "silk_popup_modal_backdrop" flag (only for a12)
+- Ability to disable flags through config
+- Fixed all bugs in config mode
