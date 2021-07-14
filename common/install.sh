@@ -126,6 +126,12 @@ if [ $USE_CONFIG = "1" ]; then
     sed -i 's/"silk_popup_modal_backdrop" value="true"/"silk_popup_modal_backdrop" value="false"/g' $flags
   fi
 
+  if [ $PILL_SHAPED_KEYS = "1" ]; then
+    sed -i 's/"pill_shaped_key" value="false"/"pill_shaped_key" value="true"/g' $flags
+  else
+    sed -i 's/"pill_shaped_key" value="true"/"pill_shaped_key" value="false"/g' $flags
+  fi
+
 else
 
   ui_print ""
@@ -345,18 +351,6 @@ else
     ui_print "- Disabled"
   fi
 
-  sleep 1
-  
-  ui_print ""
-  ui_print "- Apply flags every reboot?"
-  ui_print "- Vol+ — Yes | Vol- — No"
-  if chooseport 100; then
-    ui_print "- Enabled"
-  else
-    rm -rf $MODPATH/service.sh
-    ui_print "- Disabled"
-  fi
-  
   sleep 1
   
   ui_print ""

@@ -15,10 +15,11 @@
   DELJOYSTICK=0
   EMAILPROVIDER=0
   SILK_POPUP_AND_MODAL_BACKDROP=0
+  PILL_SHAPED_KEYS=0
   
   # a12 only
   SILK_THEME=0
-
+  
   SKIPUNZIP=1
   unzip -qjo "$ZIPFILE" 'common/functions.sh' -d $TMPDIR >&2
   . $TMPDIR/functions.sh
