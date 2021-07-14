@@ -327,22 +327,22 @@ else
       sed -i 's/"use_silk_theme_by_default" value="true"/"use_silk_theme_by_default" value="false"/g' $flags
       ui_print "- Disabled"
     fi
-    
+  fi
+  
     sleep 1
     
-    ui_print ""
-    ui_print "- Enable silk pop-up?"
-    ui_print "- Vol+ — Yes | Vol- — No"
-    if chooseport 100; then
-      sed -i 's/"silk_popup" value="false"/"silk_popup" value="true"/g' $flags
-      sed -i 's/"silk_popup_modal_backdrop" value="false"/"silk_popup_modal_backdrop" value="true"/g' $flags
-      ui_print "SILK_POPUP_AND_BACKDROP" >> $MODPATH/config.ngt
-      ui_print "- Enabled"
-    else
-      sed -i 's/"silk_popup" value="true"/"silk_popup" value="false"/g' $flags
-      sed -i 's/"silk_popup_modal_backdrop" value="true"/"silk_popup_modal_backdrop" value="false"/g' $flags
-      ui_print "- Disabled"
-    fi
+  ui_print ""
+  ui_print "- Enable silk pop-up and modal backdrop?"
+  ui_print "- Vol+ — Yes | Vol- — No"
+  if chooseport 100; then
+    sed -i 's/"silk_popup" value="false"/"silk_popup" value="true"/g' $flags
+    sed -i 's/"silk_popup_modal_backdrop" value="false"/"silk_popup_modal_backdrop" value="true"/g' $flags
+    ui_print "SILK_POPUP_AND_BACKDROP" >> $MODPATH/config.ngt
+    ui_print "- Enabled"
+  else
+    sed -i 's/"silk_popup" value="true"/"silk_popup" value="false"/g' $flags
+    sed -i 's/"silk_popup_modal_backdrop" value="true"/"silk_popup_modal_backdrop" value="false"/g' $flags
+    ui_print "- Disabled"
   fi
 
   sleep 1

@@ -23,6 +23,6 @@
 - Fixes, fixes, fixes
 
 ### v5.5 ###
-- New "silk_popup_modal_backdrop" flag (only for a12)
+- New "silk_popup_modal_backdrop" flag
 - Ability to disable flags through config
 - Fixed all bugs in config mode
