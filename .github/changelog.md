@@ -26,3 +26,7 @@
 - New "silk_popup_modal_backdrop" flag
 - Ability to disable flags through config
 - Fixed all bugs in config mode
+
+### v5.6 ###
+- New "gm3_dynamic_colors" "theme_listing_m3" "material3_theme" "gm3_collapsing_toolbar" flags
+- 
